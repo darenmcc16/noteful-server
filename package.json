@@ -1,10 +1,9 @@
 {
   "name": "express-boilerplate",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --require test/setup.js",
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "predeploy": "npm audit",
@@ -25,5 +24,14 @@
     "mocha": "^8.2.1",
     "nodemon": "^2.0.7",
     "supertest": "^6.1.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darenmcc16/express-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darenmcc16/express-boilerplate/issues"
+  },
+  "homepage": "https://github.com/darenmcc16/express-boilerplate#readme",
+  "description": ""
 }
