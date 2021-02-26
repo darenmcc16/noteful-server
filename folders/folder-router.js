@@ -46,7 +46,7 @@ folderRouter
       .catch(next)
   })
 
-foldersRouter
+folderRouter
   .route('/:folder_id')
   .all((req, res, next) => {
     FolderService.getById(

@@ -17,10 +17,10 @@ app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
 
 app.use(helmet())
 app.use(cors())
-app.use(validateBearerToken)
+//app.use(validateBearerToken)
 
-app.use(noteRouter)
-app.use(folderRouter)
+app.use('/notes', noteRouter)
+app.use('/folders', folderRouter)
 
 app.get('/', (req, res) =>{
   res.send('Hello, world!')
