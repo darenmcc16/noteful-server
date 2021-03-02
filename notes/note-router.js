@@ -8,10 +8,10 @@ const jsonParser = express.json()
 
 const serializeNote = note => ({
   id: note.id,
-  style: note.style,
   title: xss(note.title),
   content: xss(note.content),
   date_published: note.date_published,
+  folder_id: note.folder_id
 })
 
 noteRouter
@@ -20,10 +20,8 @@ noteRouter
     console.log("hello")
     const knexInstance = req.app.get('db')
     NoteService.getAllNotes(knexInstance)
-      .then(notes => {
-        console.log(notes)
-        res.json(notes.map(serializeNote))
-      })
+    console.log("hello 2")
+      .then(notes => res.status(200).json(notes.map(serializeNote)))
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
