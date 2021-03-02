@@ -20,6 +20,7 @@ noteRouter
     const knexInstance = req.app.get('db')
     NoteService.getAllNotes(knexInstance)
       .then(notes => {
+        console.log(notes)
         res.json(notes.map(serializeNote))
       })
       .catch(next)
