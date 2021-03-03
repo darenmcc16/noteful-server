@@ -25,18 +25,16 @@ noteRouter
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
-    const { title, content } = req.body
-    const newNote = { title, content }
+    const { title, content, folder_id } = req.body
+    const newNote = { title, content, folder_id }
+    const db = req.app.get('db')
 
     for (const [key, value] of Object.entries(newNote))
       if (value == null)
         return res.status(400).json({
           error: { message: `Missing '${key}' in request body` }
         })
-    NoteService.insertNote(
-      req.app.get('db'),
-      newNote
-    )
+    NoteService.insertNote(db,newNote)
       .then(note => {
         res
           .status(201)
@@ -49,10 +47,9 @@ noteRouter
 noteRouter
   .route('/:note_id')
   .all((req, res, next) => {
-    NoteService.getById(
-      req.app.get('db'),
-      req.params.note_id
-    )
+    const db = req.app.get('db')
+    const id = req.params.note_id
+    NoteService.getById(db, id)
       .then(note => {
         if (!note) {
           return res.status(404).json({
@@ -68,18 +65,17 @@ noteRouter
     res.json(serializeNote(res.note))
   })
   .delete((req, res, next) => {
-    NoteService.deleteNotes(
-      req.app.get('db'),
-      req.params.note_id
-    )
+      const db = req.app.get('db')
+      const id = req.params.note_id
+    NoteService.deleteNote(db,id)
       .then(numRowsAffected => {
         res.status(204).end()
       })
       .catch(next)
   })
   .patch(jsonParser, (req, res, next) => {
-    const { title, content } = req.body
-    const noteToUpdate = { title, content }
+    const { title, date_published } = req.body
+    const noteToUpdate = { title, date_published }
 
     const numberOfValues = Object.values(noteToUpdate).filter(Boolean).length
     if (numberOfValues === 0)
@@ -89,11 +85,9 @@ noteRouter
         }
       })
 
-    NoteService.updateNote(
-      req.app.get('db'),
-      req.params.note_id,
-      noteToUpdate
-    )
+      const db = req.app.get('db')
+      const id = req.params.note_id
+      NoteService.updateNote(db, id,noteToUpdate)
       .then(numRowsAffected => {
         res.status(204).end()
       })
