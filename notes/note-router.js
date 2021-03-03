@@ -29,11 +29,15 @@ noteRouter
     const newNote = { title, content, folder_id }
     const db = req.app.get('db')
 
-    for (const [key, value] of Object.entries(newNote))
-      if (value == null)
-        return res.status(400).json({
-          error: { message: `Missing '${key}' in request body` }
-        })
+    if(!title) {
+      return res.status(400).json( {error: {message: 'Title is required'}} )
+    }
+    if(!content) {
+      return res.status(400).json( {error: {message: 'Content is required'}} )
+    }
+    if(!folder_id) {
+      return res.status(400).json( {error: {message: 'Folder is required'}} )
+    }
     NoteService.insertNote(db,newNote)
       .then(note => {
         res

@@ -26,11 +26,9 @@ folderRouter
     const newFolder = { title }
     const db = req.app.get('db')
 
-    for (const [key, value] of Object.entries(newFolder))
-      if (value == null)
-        return res.status(400).json({
-          error: { message: `Missing '${key}' in request body` }
-        })
+    if(!title){
+      return res.status(400).json({error: {message: 'folder name is required'}})
+    }
         FolderService.insertFolder(db,newFolder)
       .then(folder => {
         res
