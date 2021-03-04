@@ -67,6 +67,7 @@ noteRouter
   })
   .get((req, res, next) => {
     res.json(serializeNote(res.note))
+    console.log("hello 3")
   })
   .delete((req, res, next) => {
       const db = req.app.get('db')
