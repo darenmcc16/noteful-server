@@ -21,7 +21,8 @@ noteRouter
     const knexInstance = req.app.get('db')
     NoteService.getAllNotes(knexInstance)
     console.log("hello 2")
-      .then(notes => res.status(200).json(notes.map(serializeNote)))
+      //.then(notes => res.status(200).json(notes.map(serializeNote)))
+      .then(notes => res.status(200).json(notes))
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
@@ -92,7 +93,7 @@ noteRouter
 
       const db = req.app.get('db')
       const id = req.params.note_id
-      NoteService.updateNote(db, id,noteToUpdate)
+      NoteService.updateNote(db, id, noteToUpdate)
       .then(numRowsAffected => {
         res.status(204).end()
       })
