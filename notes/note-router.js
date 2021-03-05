@@ -22,7 +22,10 @@ noteRouter
     NoteService.getAllNotes(knexInstance)
     console.log("hello 2")
       //.then(notes => res.status(200).json(notes.map(serializeNote)))
-      .then(notes => res.status(200).json(notes))
+      .then(notes => {
+        console.log(notes, "this is the notes")
+        res.status(200).json(notes)
+      })
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {

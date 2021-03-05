@@ -1,5 +1,6 @@
 const NoteService = {
     getAllNotes(knex) {
+      console.log("inside service")
       return knex.select('*').from('noteful_notes')
     },
     insertNote(knex, newNote) {
