@@ -6,8 +6,8 @@ const helmet = require('helmet')
 const {NODE_ENV} = require('./config')
 const validateBearerToken = require('./vaildate-bearer-token')
 const errorHandler = require('./error-handler')
-const noteRouter = require('../notes/note-router')
-const folderRouter = require('../folders/folder-router')
+const noteRouter = require('./notes/note-router')
+const folderRouter = require('./folders/folder-router')
 
 const app = express()
 
