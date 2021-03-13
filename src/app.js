@@ -19,8 +19,8 @@ app.use(cors())
 app.use(helmet())
 //app.use(validateBearerToken)
 
-app.use('/api/notes', noteRouter)
-app.use('/api/folders', folderRouter)
+app.use('/notes', noteRouter)
+app.use('/folders', folderRouter)
 
 app.get('/', (req, res) =>{
   res.send('Hello, world!')
