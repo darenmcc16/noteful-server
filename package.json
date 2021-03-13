@@ -1,7 +1,7 @@
 {
-  "name": "express-boilerplate",
+  "name": "noteful-sever",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha --require test/setup.js",
     "dev": "nodemon src/server.js",
@@ -11,9 +11,6 @@
     "predeploy": "npm audit",
     "deploy": "git push heroku main",
     "postdeploy": "npm run migrate:production"
-  },
-  "engines": {
-    "node": "14.x"
   },
   "keywords": [],
   "author": "",
