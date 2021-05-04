@@ -3,5 +3,5 @@ CREATE TABLE notes (
     title TEXT NOT NULL,
     content TEXT,
     date_published TIMESTAMP DEFAULT now() NOT NULL,
-    folder_id INTEGER REFERENCES folders(id) NOT NULL
+    folder_id uuid REFERENCES folders(id) NOT NULL
 );

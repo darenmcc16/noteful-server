@@ -28,8 +28,8 @@ noteRouter
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
-    const { title, content, folder_id } = req.body
-    const newNote = { title, content, folder_id }
+    const { title, content, folder_id, date_published } = req.body
+    const newNote = { title, content, folder_id, date_published }
     const db = req.app.get('db')
 
     if(!title) {
